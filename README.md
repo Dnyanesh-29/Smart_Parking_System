@@ -1,15 +1,3 @@
-Below is a fully improved, production-quality **README.md** tailored precisely to **your actual Smart Street + Pay-and-Park Parking Management System**, reflecting your complete project architecture:
-
-* **Street Parking + Pay-and-Park (Single package per location)**
-* **Real-time IoT sensor integration using ESP32 + Ultrasonic**
-* **Website built with React (not Next.js)**
-* **Admin panel for Pay-and-Park only**
-* **Clickable building near Slot 5 showing 10 indoor slots**
-* **Google Map homepage with clickable locations**
-* **Database (MySQL/Firebase) integration**
-* **Automatic slot updates from sensors**
-
-This version is structured for GitHub and industry-grade documentation.
 
 ---
 
