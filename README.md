@@ -139,7 +139,7 @@ GOOGLE_MAPS_API_KEY=your_api_key
 Run the automated setup script:
 
 ```bash
-npm run setup
+npm run create-database.js
 ```
 
 This creates:
