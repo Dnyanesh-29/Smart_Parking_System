@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Street Parking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .slot {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            margin: 5px;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .available {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .occupied {
+            background-color: #F44336;
+            color: white;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2196F3;
+            color: white;
+        }
+        button:hover {
+            background-color: #1976D2;
+        }
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛣️ Street Parking Test</h1>
+    
+    <div class="controls">
+        <button onclick="fetchSlots()">🔄 Refresh Slots</button>
+        <button onclick="toggleSlot('L1')">Toggle L1</button>
+        <button onclick="toggleSlot('R1')">Toggle R1</button>
+    </div>
+
+    <div id="status">Click "Refresh Slots" to load data...</div>
+
+    <h3>Left Side</h3>
+    <div id="leftSlots"></div>
+
+    <h3>🛣️ ROAD</h3>
+
+    <h3>Right Side</h3>
+    <div id="rightSlots"></div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5000';
+
+        async function fetchSlots() {
+            try {
+                document.getElementById('status').innerHTML = '⏳ Loading slots...';
+                
+                const response = await fetch(`${BASE_URL}/slots`);
+                const slots = await response.json();
+                
+                console.log('Fetched slots:', slots);
+                
+                // Split slots into left and right
+                const leftSlots = slots.filter(slot => slot.slot_number.startsWith('L'));
+                const rightSlots = slots.filter(slot => slot.slot_number.startsWith('R'));
+                
+                // Display left slots
+                const leftContainer = document.getElementById('leftSlots');
+                leftContainer.innerHTML = leftSlots.map(slot => 
+                    `<div class="slot ${slot.occupied ? 'occupied' : 'available'}" onclick="toggleSlot('${slot.slot_number}')">
+                        ${slot.slot_number}
+                    </div>`
+                ).join('');
+                
+                // Display right slots
+                const rightContainer = document.getElementById('rightSlots');
+                rightContainer.innerHTML = rightSlots.map(slot => 
+                    `<div class="slot ${slot.occupied ? 'occupied' : 'available'}" onclick="toggleSlot('${slot.slot_number}')">
+                        ${slot.slot_number}
+                    </div>`
+                ).join('');
+                
+                document.getElementById('status').innerHTML = 
+                    `✅ Loaded ${slots.length} slots successfully! Click any slot to toggle its status.`;
+                    
+            } catch (error) {
+                console.error('Error fetching slots:', error);
+                document.getElementById('status').innerHTML = 
+                    `❌ Error: ${error.message}. Make sure your server is running on port 5000.`;
+            }
+        }
+
+        async function toggleSlot(slotNumber) {
+            try {
+                document.getElementById('status').innerHTML = `⏳ Toggling ${slotNumber}...`;
+                
+                const response = await fetch(`${BASE_URL}/slots/${slotNumber}/toggle`, {
+                    method: 'PUT'
+                });
+                
+                const result = await response.json();
+                console.log('Toggle result:', result);
+                
+                document.getElementById('status').innerHTML = `✅ ${result.message}`;
+                
+                // Refresh the display
+                setTimeout(fetchSlots, 500);
+                
+            } catch (error) {
+                console.error('Error toggling slot:', error);
+                document.getElementById('status').innerHTML = `❌ Error toggling ${slotNumber}: ${error.message}`;
+            }
+        }
+
+        // Load slots when page loads
+        window.onload = fetchSlots;
+    </script>
+</body>
+</html>
+    

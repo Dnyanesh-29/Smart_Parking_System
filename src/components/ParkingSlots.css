@@ -1,0 +1,304 @@
+/* ParkingSlots.css */
+
+.parking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .parking-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .parking-slot {
+    width: 120px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #333;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .parking-slot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+  }
+  
+  .available {
+    /* background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .available::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  }
+  
+  .occupied {
+    /* background-color: #F44336;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  }
+  
+  .occupied::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+  }
+  
+  .road {
+    width: 90%;
+    padding: 15px 0;
+    background-color: #555;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .road::before, .road::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 15%;
+    height: 6px;
+    background: repeating-linear-gradient(
+      to right,
+      #fff,
+      #fff 20px,
+      transparent 20px,
+      transparent 40px
+    );
+  }
+  
+  .road::before {
+    left: 5%;
+  }
+  
+  .road::after {
+    right: 5%;
+  }
+  
+  /* Car icon outline for parking slots */
+  .parking-slot::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%23FFFFFF' opacity='0.3' d='M544 192h-16L419.22 56.02A64.025 64.025 0 0 0 369.24 32H155.33c-26.17 0-49.7 15.93-59.42 40.23L48 194.26C20.44 201.4 0 226.21 0 256v112c0 8.84 7.16 16 16 16h48c0 53.02 42.98 96 96 96s96-42.98 96-96h128c0 53.02 42.98 96 96 96s96-42.98 96-96h48c8.84 0 16-7.16 16-16v-80c0-53.02-42.98-96-96-96zM160 432c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48zm72-240H116.93l38.4-96H232v96zm48 0V96h89.24l76.8 96H280zm200 240c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.3;
+  }
+  
+  /* Parking lines */
+  .parking-row {
+    position: relative;
+  }
+  
+  .parking-slot {
+    position: relative;
+  }
+  
+  .parking-slot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+  }
+  
+  /* Hover effects */
+  .parking-slot:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animation for slot status change */
+  @keyframes statusChange {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .parking-slot.status-changed {
+    animation: statusChange 0.5s ease;
+  }
+  
+  /* Responsive layout for tablets and mobile */
+  @media (max-width: 768px) {
+    /* Change to horizontal flex container */
+    .parking-container {
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Make road vertical */
+    .road {
+      width: 60px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      padding: 0;
+    }
+    
+    /* Adjust road markings for vertical orientation */
+    .road::before, .road::after {
+      width: 6px;
+      height: 15%;
+      left: 50%;
+      top: auto;
+      transform: translateX(-50%);
+      background: repeating-linear-gradient(
+        to bottom,
+        #fff,
+        #fff 20px,
+        transparent 20px,
+        transparent 40px
+      );
+    }
+    
+    .road::before {
+      top: 5%;
+    }
+    
+    .road::after {
+      bottom: 5%;
+    }
+    
+    /* Adjust parking rows to be vertical */
+    .parking-row {
+      flex-direction: column;
+      width: auto;
+      height: 100%;
+    }
+    
+    /* Rotate parking slots for vertical orientation */
+    .parking-slot {
+      /* For vertical road orientation, we flip width/height to represent side parking */
+      width: 60px;
+      height: 100px;
+      font-size: 16px;
+    }
+    
+    /* Rotate car icon for vertical orientation */
+    .parking-slot::after {
+      transform: rotate(90deg);
+    }
+  }
+  
+  /* Further adjustments for smaller mobile screens */
+  @media (max-width: 480px) {
+    .parking-container {
+      gap: 10px;
+    }
+    
+    .road {
+      width: 40px;
+      height: 350px;
+      font-size: 16px;
+    }
+    
+    /* Even smaller parking slots for mobile */
+    .parking-slot {
+      width: 45px;
+      height: 80px;
+      font-size: 14px;
+      border-width: 1px;
+    }
+    
+    .parking-row {
+      gap: 8px;
+      padding: 5px;
+    }
+  }
+
+/* Building styles - positioned closer to the road */
+.building {
+    position: absolute;
+    bottom: 120px; /* Position it higher up, closer to the road */
+    left: 25px;
+    width: 180px;
+    height: 120px;
+    background-color: #607D8B;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  
+  .building::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z' opacity='0.2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+  }
+  
+  /* Responsive adjustments for building */
+  @media (max-width: 768px) {
+    .building {
+      /* For vertical road orientation at tablet size */
+      left: 20px;
+      bottom: 100px; /* Adjust position for tablet view */
+      width: 120px;
+      height: 100px;
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .building {
+      /* For smaller screens */
+      left: 10px;
+      bottom: 80px; /* Adjust position for mobile view */
+      width: 90px;
+      height: 70px;
+      font-size: 14px;
+    }
+  }
