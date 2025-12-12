@@ -217,7 +217,7 @@ A full API reference can be generated upon request.
 
 ---
 
-## 10. ESP32 Firmware (Concept)
+## 10. ESP32 Firmware 
 
 * Connect to WiFi.
 * Measure distance using HC-SR04.
