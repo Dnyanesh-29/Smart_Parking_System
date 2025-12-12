@@ -166,7 +166,7 @@ This creates:
 ### Start the Backend
 
 ```bash
-npm start
+node server.js
 ```
 
 Backend runs at:
