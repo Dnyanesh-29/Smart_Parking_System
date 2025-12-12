@@ -18,6 +18,9 @@ This solution provides:
 * A backend API to handle sensor updates, user requests, booking management, and admin operations.
 * A scalable database structure supporting multiple locations.
 
+<img src="ss/ss1.jpeg" width="600">
+
+
 ---
 
 ## 2. Key Features
@@ -30,6 +33,9 @@ This solution provides:
 * A clickable building near Street Slot 5 that opens a dedicated indoor parking page with 10 slots.
 * Pay-and-Park zone with real-time availability.
 * Responsive UI (desktop and mobile).
+
+<img src="ss/ss2.jpeg" width="600">
+
 
 ### 2.2 IoT Features
 
@@ -45,6 +51,8 @@ This solution provides:
 * View occupancy analytics.
 * Manage indoor building slots.
 * Manual overrides for slot status.
+<img src="ss/ss5.jpeg" width="600">
+
 
 ---
 
@@ -71,6 +79,8 @@ This solution provides:
 * ESP32 WiFi Module
 * HC-SR04 Ultrasonic Sensor
 * REST API communication over WiFi
+<img src="ss/circuit_dia.jpeg" width="600">
+
 
 ---
 
