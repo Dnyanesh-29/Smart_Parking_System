@@ -225,69 +225,6 @@ A full API reference can be generated upon request.
 * Send POST request to server with slot ID and distance.
 * Repeat every 2–3 seconds.
 
-(Can provide complete code if needed.)
 
----
 
-## 11. Deployment
 
-### Recommended Setup
-
-* Nginx reverse proxy
-* PM2 for Node.js
-* MySQL production configuration
-* TLS/HTTPS via Let’s Encrypt
-* ESP32 configured with production backend URL
-
-### Production Start Command
-
-```bash
-pm2 start server.js --name smart-parking
-```
-
----
-
-## 12. Troubleshooting
-
-| Issue                    | Possible Cause      | Solution                      |
-| ------------------------ | ------------------- | ----------------------------- |
-| Slots not updating       | ESP32 not connected | Verify WiFi SSID/password     |
-| API not reachable        | Backend offline     | Restart server                |
-| Map not loading          | Wrong API key       | Enable Maps JavaScript API    |
-| Admin panel not updating | Cached data         | Refresh browser / clear cache |
-
----
-
-## 13. Project Roadmap
-
-Future enhancements planned:
-
-* Vehicle number plate detection.
-* Dynamic pricing based on demand.
-* Space prediction using machine learning.
-* Mobile app (React Native).
-* Multi-city support.
-
----
-
-## 14. License
-
-MIT License.
-
----
-
-## 15. Contact
-
-For feedback or collaboration:
-
-* Email: [support@smartparking.com](mailto:support@smartparking.com)
-* GitHub Issues: available in the repository
-
----
-
-If you want, I can also prepare:
-
-1. A professional project description for your resume.
-2. A diagram-based architecture section (PDF/PNG).
-3. A trimmed version of README for academic submission.
-4. A version including screenshots and UI previews.
